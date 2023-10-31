@@ -1,0 +1,24 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python Schedulee
+
+on:
+  schedule:
+    - cron: '8 03 * * *'
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: szenius/set-timezone@v1.0 #设置执行环境的时区
+        with:
+          timezoneLinux: "Asia/Shanghai"
+      - uses: actions/setup-python@v4 #使用python装配器
+        with:
+          python-version:'3.6.8' # 定python版本
+          cache:'poetry' #设置缓存
+        
+      - run: poetry install --without dev #安装
+      - run: poetry run python .\DSchedule.py # 执行
