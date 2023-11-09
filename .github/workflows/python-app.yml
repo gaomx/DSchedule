@@ -5,7 +5,7 @@ name: Python Schedulee
 
 on:
   schedule:
-    - cron: '20 14 * * 7'
+    - cron: '20 14 * * *'
 
 jobs:
   run-python:
