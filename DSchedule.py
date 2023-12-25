@@ -29,7 +29,7 @@ df = pd.read_csv(filepath,
                 encoding='utf-8',
                 header=0, 
                 parse_dates=[0], 
-                date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d %H:%M:%S')
+                date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d %H:%M')
                 )
 
 print(df)
