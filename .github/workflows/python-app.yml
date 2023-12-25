@@ -26,7 +26,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
       - name: Run
-        run: python3 /home/runner/work/DSchedule/DScheudle.py
+        run: python3 DSchedule.py
       - name: Commit
         run: |
           git config --local user.name $GIT_NAME
