@@ -29,7 +29,7 @@ df = pd.read_csv(filepath,
                 encoding='utf-8',
                 header=0, 
                 parse_dates=[0], 
-                date_parser=lambda x: pd.to_datetime(x, format='%Y/%m/%d %H:%M:%S')
+                date_parser=lambda x: pd.to_datetime(x, format='%Y-%m-%d %H:%M:%S')
                 )
 
 print(df)
@@ -64,5 +64,5 @@ for row in df.itertuples(index=False):
 
 
 # %%
-with open('/DSchedule/DSchedule.ics', 'wb') as f:
+with open('/home/runner/work/DSchedule/DSchedule/DSchedule.ics', 'wb') as f:
     f.write(txt)
