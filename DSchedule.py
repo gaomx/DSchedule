@@ -8,7 +8,7 @@ import os
 import requests
 
 url = 'http://y.saoju.net/yyj/artist/1538/download'  # 下载文件的URL
-save_path = '/DSchedule/'  # 文件保存路径
+save_path = '/home/runner/work/DSchedule/DSchedule/'  # 文件保存路径
 now = datetime.datetime.now()
 current_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 filename = "DSchedule" + current_time + ".csv"
