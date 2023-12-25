@@ -31,6 +31,9 @@ jobs:
       - name: Run
         run: python3 DSchedule.py
       - name: Commit
+        env:
+          GIT_NAME: ${{ secrets.GIT_NAME }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
         run: |
           git config --local user.name $GIT_NAME
           git config --local user.email $GIT_EMAIL
