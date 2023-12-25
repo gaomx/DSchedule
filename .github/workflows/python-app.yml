@@ -1,28 +1,33 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python Schedulee
+name: Python Schedule
 
 on:
+  push:
   schedule:
-    - cron: '21 14 * * *'
+    - cron: '0 0 * * *'
+
+env:
+  TZ: Asia/Shanghai
 
 jobs:
-  run-python:
+  # a single job
+  a-job-name:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: szenius/set-timezone@v1.0 #设置执行环境的时区
-      - uses: actions/setup-python@v4 #使用python装配器
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python3
+        uses: actions/setup-python@v2
         with:
-          python-version:'3.6.8' # 定python版本
-               
-      - run: poetry install --without dev #安装
-      - run: poetry run python .\DSchedule.py # 执行
-
-      - name: Update Schedule
-        run: python3 DSchedule.py
-        
+          python-version: '3.x'
+      - name: Install requirements
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install -r ./requirements.txt
+      - name: Run
+        run: python3 ./DScheudle.py
       - name: Commit
         env:
         GIT_NAME: ${{ secrets.GIT_NAME }}
@@ -35,6 +40,5 @@ jobs:
       - name: Push
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GIT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master      
-
